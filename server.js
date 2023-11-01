@@ -56,7 +56,7 @@ app.get("/get", async (req, res) => {
     if (req.session.jwt) {
       res.status(200).send({ message: req.session.jwt });
     } else {
-      res.status(200).send({ message: req.session.jwt });
+      res.status(200).send({ message: "Cookie not present"});
     }
   } catch (error) {
     console.log(error);
