@@ -55,6 +55,8 @@ app.get("/get", async (req, res) => {
     console.log(req.session.jwt);
     if (req.session.jwt) {
       res.status(200).send({ message: req.session.jwt });
+    } else {
+      res.status(200).send({ message: req.session.jwt });
     }
   } catch (error) {
     console.log(error);
