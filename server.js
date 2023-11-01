@@ -7,15 +7,6 @@ const app = express();
 
 require("dotenv").config();
 
-// app.use(
-//   cors({
-//     origin: "https://cookieapp.vercel.app",
-//     credentials: true,
-//   })
-// );
-
-// app.set("trust proxy", 1);
-
 app.use(express.static(path.join(__dirname, "./build")));
 
 app.use(cors());
@@ -62,7 +53,9 @@ app.post("/set1", async (req, res) => {
 app.get("/get", async (req, res) => {
   try {
     console.log(req.session.jwt);
-    res.status(200).send({ message: req.session.jwt });
+    if (req.session.jwt) {
+      res.status(200).send({ message: req.session.jwt });
+    }
   } catch (error) {
     console.log(error);
   }
@@ -73,7 +66,6 @@ app.post("/remove", (req, res) => {
 
   res.send({ message: "Logged out." });
 });
-
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./build/index.html"));
