@@ -41,7 +41,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/set", async (req, res) => {
   try {
-    res.cookie("jwt", accessToken, { sameSite: 'lax'});
+    res.cookie("jwt", "hello", { httpOnly: true, sameSite: 'strict', secure: true });
     res.status(200).send({ message: "Cookie Set Successfully" });
   } catch (error) {
     console.log(error);
@@ -65,7 +65,7 @@ app.get("/get", async (req, res) => {
   try {
     console.log(req.cookies["jwt"]);
     if (req.cookies["jwt"]) {
-      res.status(200).send({ message: req.session.jwt });
+      res.status(200).send({ message: req.cookies.jwt});
     } else {
       res.status(200).send({ message: "Cookie not present"});
     }
