@@ -43,6 +43,7 @@ app.post("/set", async (req, res) => {
       httpOnly: true,
       sameSite: "strict",
       secure: true,
+      maxAge: 5000
     });
     res.status(200).send({ message: "Cookie Set Successfully" });
   } catch (error) {
