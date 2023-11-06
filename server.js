@@ -81,7 +81,7 @@ app.get("/get", async (req, res) => {
 // });
 
 app.post("/remove", (req, res) => {
-  // res.clearCookie("jwt", { path: "/" });
+  res.clearCookie("jwt", { path: "/" });
 
   res.send({ message: "Logged out." });
 });
