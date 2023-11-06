@@ -41,7 +41,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/set", async (req, res) => {
   try {
-    res.cookie("jwt", "hello", { httpOnly: true, sameSite: 'strict', secure: true });
+    res.cookie("jwt", "hello", { 
+      // httpOnly: true, 
+      sameSite: 'strict',
+      secure: true });
     res.status(200).send({ message: "Cookie Set Successfully" });
   } catch (error) {
     console.log(error);
