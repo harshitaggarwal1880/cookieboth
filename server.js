@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const mysql   = require('mysql');
+
 // const session = require("express-session");
 const app = express();
 
@@ -92,6 +94,23 @@ app.post("/remove", (req, res) => {
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./build/index.html"));
 });
+
+
+const DB = mysql.createConnection({ 
+  host     : "localhost",  
+  user     : "root",   
+  password :  "root",  
+  database : "test",
+}); 
+
+DB.connect(function(err) {
+  if(err) {
+    throw err
+  };  
+  console.log('Database Connected Succesfully');
+})
+
+
 
 const port = 5000;
 
